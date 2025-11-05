@@ -124,12 +124,10 @@ func _on_resetar_button_pressed():
 		feedback_label.text = "Combinação resetada"
 		feedback_label.modulate = Color.GRAY
 
-<<<<<<< HEAD
 func _on_close_button_pressed():
 	esconder()
 
 =======
->>>>>>> 41fbbe098a89adc352de5fe5ab1f9750f6c959f4
 func resetar_rodas():
 	# Voltar todas as rodas para 0
 	if roda1:
