@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://c71wxrtw07t5i"]
+
+[ext_resource type="Script" uid="uid://knbpasm7e4ci" path="res://scripts/QuadroEvidencias.gd" id="1_ylwil"]
+[ext_resource type="Script" uid="uid://b4punhiutcoj3" path="res://scripts/QuadroConexoes.gd" id="2_ovd3c"]
+[ext_resource type="FontFile" uid="uid://digiplw3l5urc" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="2_t6vg7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6vg7"]
+bg_color = Color(0.0588235, 0.0588235, 0.137255, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0.85098, 1, 1)
+shadow_color = Color(0, 0.85098, 1, 0.25098)
+shadow_size = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqgta"]
+bg_color = Color(0.0862745, 0.129412, 0.243137, 1)
+border_width_right = 2
+border_color = Color(0, 0.85098, 1, 1)
+
+[node name="QuadroEvidencias" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_ylwil")
+
+[node name="PainelPrincipal" type="Panel" parent="."]
+process_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t6vg7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PainelPrincipal"]
+process_mode = 2
+layout_mode = 0
+alignment = 1
+
+[node name="InventarioScroll" type="ScrollContainer" parent="PainelPrincipal/HBoxContainer"]
+process_mode = 2
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bqgta")
+horizontal_scroll_mode = 0
+
+[node name="ListaEvidencias" type="VBoxContainer" parent="PainelPrincipal/HBoxContainer/InventarioScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="QuadroConexoes" type="Control" parent="PainelPrincipal/HBoxContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_ovd3c")
+
+[node name="BtnFechar" type="Button" parent="PainelPrincipal"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -21.0
+offset_bottom = 36.0
+grow_horizontal = 0
+theme_override_colors/icon_hover_pressed_color = Color(1, 0.2, 0.466667, 1)
+theme_override_colors/font_color = Color(1, 0, 0.333333, 1)
+theme_override_fonts/font = ExtResource("2_t6vg7")
+theme_override_font_sizes/font_size = 14
+text = "X"
+
+[connection signal="pressed" from="PainelPrincipal/BtnFechar" to="." method="_on_btn_fechar_pressed"]

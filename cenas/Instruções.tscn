@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://crvsam833ji4g"]
+
+[ext_resource type="Theme" uid="uid://bb47iui4wt5vr" path="res://UI/GameTheme.tres" id="1_3x72b"]
+[ext_resource type="Script" uid="uid://dvk3uqke4cbbb" path="res://scripts/instruções.gd" id="2_qsrgd"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_3x72b")
+script = ExtResource("2_qsrgd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 479.0
+offset_bottom = 269.0
+mouse_filter = 2
+color = Color(0.46, 0.460522, 0.553387, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 482.0
+offset_bottom = 270.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+text = "Londres, 2077. O lendário detetive Sherlock Holmes é uma IA. Você é o Dr. John Watson, sua \"lente\" humana em uma cidade encharcada de neon e mistério.
+Ao chegar na cena do crime, sua primeira tarefa é simples: escanear o corpo e iniciar a análise.
+
+Para finalizar, vá até a escrivaninha, interaja com a gaveta, insira o código 3815 e aguarde"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CONTROLES:
+W, A, S, D - Mover
+E - Interagir / Escanear"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Iniciar Investigação"
+
+[node name="CreditosButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Créditos
+"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditosButton" to="." method="_on_creditos_button_pressed"]

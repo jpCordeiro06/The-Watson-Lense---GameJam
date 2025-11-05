@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://bolp5x7ktv07o"]
+
+[ext_resource type="Script" uid="uid://ccr4ptvmmk74w" path="res://scripts/dialogo_ui.gd" id="1_idj3q"]
+[ext_resource type="Theme" uid="uid://bb47iui4wt5vr" path="res://UI/GameTheme.tres" id="2_48ffi"]
+[ext_resource type="Texture2D" uid="uid://dwhi610a5mfdh" path="res://assets/spriteHolmes/xereca_holmes_sprite.png" id="2_hmkir"]
+
+[node name="DialogoUI" type="CanvasLayer"]
+
+[node name="MeuPainel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(250, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 69.0
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_48ffi")
+script = ExtResource("1_idj3q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MeuPainel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MeuPainel/VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+theme = ExtResource("2_48ffi")
+theme_override_constants/separation = 2
+
+[node name="TextureRect" type="TextureRect" parent="MeuPainel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme = ExtResource("2_48ffi")
+texture = ExtResource("2_hmkir")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DialogoTexto" type="RichTextLabel" parent="MeuPainel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_48ffi")
+fit_content = true
+autowrap_mode = 2
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="MeuPainel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MeuPainel/VBoxContainer/ChoicesContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_48ffi")
+
+[node name="Button2" type="Button" parent="MeuPainel/VBoxContainer/ChoicesContainer"]
+layout_mode = 2
+theme = ExtResource("2_48ffi")
+
+[node name="Button3" type="Button" parent="MeuPainel/VBoxContainer/ChoicesContainer"]
+layout_mode = 2
+theme = ExtResource("2_48ffi")
+
+[node name="Timer" type="Timer" parent="MeuPainel"]
+process_callback = 0
+
+[connection signal="timeout" from="MeuPainel/Timer" to="MeuPainel" method="_on_timer_fechar_dialogo_timeout"]

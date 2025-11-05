@@ -1,0 +1,147 @@
+[gd_scene load_steps=21 format=3 uid="uid://xbid0vjmfgrv"]
+
+[ext_resource type="Script" uid="uid://byweg1h03oc2o" path="res://scripts/Quarto.gd" id="1_xseql"]
+[ext_resource type="Texture2D" uid="uid://c5n6s0xevaee" path="res://assets/Quarto/Quarto1/Quarto1.png" id="2_ygt8o"]
+[ext_resource type="PackedScene" uid="uid://8woea7etcoif" path="res://cenas/evidencia.tscn" id="3_q2kdq"]
+[ext_resource type="PackedScene" uid="uid://diixlkqaopvfi" path="res://Jogador/watson.tscn" id="4_ygt8o"]
+[ext_resource type="PackedScene" uid="uid://gcj8mdhua8u1" path="res://cenas/CadeadoUI.tscn" id="5_ws485"]
+[ext_resource type="Script" uid="uid://crl4lgcc2dclj" path="res://scripts/CadeadoInterativo.gd" id="6_oyhqy"]
+[ext_resource type="Texture2D" uid="uid://2h7mh5d5owvl" path="res://assets/Quarto/Quarto1/Cadeira.png" id="7_j8kd6"]
+[ext_resource type="Texture2D" uid="uid://defe56t5n762t" path="res://assets/Quarto/Quarto1/Nota.png" id="7_ws485"]
+[ext_resource type="PackedScene" uid="uid://bolp5x7ktv07o" path="res://cenas/DialogoUI.tscn" id="8_u03qv"]
+[ext_resource type="PackedScene" uid="uid://bll8q8cwh1fse" path="res://UI/HUD.tscn" id="9_j8kd6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cs3ls"]
+size = Vector2(558.5, 221)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws485"]
+size = Vector2(30, 700)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u03qv"]
+size = Vector2(28, 674.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8kd6"]
+size = Vector2(218, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyhqy"]
+size = Vector2(216, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mujuw"]
+size = Vector2(228.5, 126.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocbms"]
+size = Vector2(208, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ems36"]
+size = Vector2(122.5, 243.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfvxt"]
+size = Vector2(10.5, 73.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h3qn"]
+size = Vector2(68, 7)
+
+[node name="Quarto" type="Node2D"]
+script = ExtResource("1_xseql")
+
+[node name="BaseQuarto" type="Sprite2D" parent="."]
+position = Vector2(244, 179)
+texture = ExtResource("2_ygt8o")
+
+[node name="ParedesQuarto" type="StaticBody2D" parent="."]
+
+[node name="ParedeCima" type="CollisionShape2D" parent="ParedesQuarto"]
+position = Vector2(252.25, -74.5)
+shape = SubResource("RectangleShape2D_cs3ls")
+
+[node name="ParedeEsqueda" type="CollisionShape2D" parent="ParedesQuarto"]
+position = Vector2(-13, 168)
+shape = SubResource("RectangleShape2D_ws485")
+
+[node name="ParedeDireita" type="CollisionShape2D" parent="ParedesQuarto"]
+position = Vector2(517, 182.75)
+shape = SubResource("RectangleShape2D_u03qv")
+
+[node name="ParedeBaixoEsq" type="CollisionShape2D" parent="ParedesQuarto"]
+position = Vector2(103, 502.5)
+shape = SubResource("RectangleShape2D_j8kd6")
+
+[node name="ParedeBaixoDir" type="CollisionShape2D" parent="ParedesQuarto"]
+position = Vector2(396, 503)
+shape = SubResource("RectangleShape2D_oyhqy")
+
+[node name="Armario" type="CollisionShape2D" parent="ParedesQuarto"]
+position = Vector2(367.75, -54.25)
+shape = SubResource("RectangleShape2D_mujuw")
+
+[node name="Mesa" type="CollisionShape2D" parent="ParedesQuarto"]
+position = Vector2(114, 5.5)
+shape = SubResource("RectangleShape2D_ocbms")
+
+[node name="Cama" type="CollisionShape2D" parent="ParedesQuarto"]
+position = Vector2(433.25, 363.75)
+shape = SubResource("RectangleShape2D_ems36")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedesQuarto"]
+position = Vector2(283.75, 481.75)
+shape = SubResource("RectangleShape2D_lfvxt")
+
+[node name="PontoDeEntradaQuarto" type="Marker2D" parent="."]
+position = Vector2(247, 430)
+
+[node name="PortaParaApartamento" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PortaParaApartamento"]
+position = Vector2(245, 515.5)
+shape = SubResource("RectangleShape2D_7h3qn")
+
+[node name="Cadeira" type="Sprite2D" parent="."]
+position = Vector2(90, 63)
+texture = ExtResource("7_j8kd6")
+
+[node name="Watson" parent="." instance=ExtResource("4_ygt8o")]
+position = Vector2(-102, 1)
+
+[node name="EvidenciaGavetaCadeado" parent="." instance=ExtResource("3_q2kdq")]
+position = Vector2(172, 55)
+script = ExtResource("6_oyhqy")
+id_da_pista = "gaveta_cadeado"
+
+[node name="Sprite2D" parent="EvidenciaGavetaCadeado" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="EvidenciaGavetaCadeado" index="1"]
+position = Vector2(-2, -6.25)
+
+[node name="EvidenciaNotaFiscal" parent="." instance=ExtResource("3_q2kdq")]
+position = Vector2(466, 211)
+rotation = 1.5708
+id_da_pista = "nota_fiscal"
+nome_evidencia = "Nota Fiscal"
+
+[node name="Sprite2D" parent="EvidenciaNotaFiscal" index="0"]
+position = Vector2(4.67322, -0.15692)
+scale = Vector2(3.46929, 3.59043)
+texture = ExtResource("7_ws485")
+
+[node name="CollisionShape2D" parent="EvidenciaNotaFiscal" index="1"]
+position = Vector2(14.75, 5.25)
+
+[node name="DialogoUI" parent="." instance=ExtResource("8_u03qv")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("9_j8kd6")]
+
+[node name="CanvasLayerCadeado" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="CadeadoUI" parent="CanvasLayerCadeado" instance=ExtResource("5_ws485")]
+process_mode = 2
+offset_left = -468.0
+offset_top = -353.0
+offset_right = 22.0
+offset_bottom = 127.0
+
+[connection signal="body_entered" from="PortaParaApartamento" to="." method="_on_porta_para_apartamento_body_entered"]
+
+[editable path="EvidenciaGavetaCadeado"]
+[editable path="EvidenciaNotaFiscal"]

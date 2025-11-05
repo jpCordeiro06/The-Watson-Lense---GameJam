@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0o5nrafas04b"]
+
+[ext_resource type="Theme" uid="uid://bb47iui4wt5vr" path="res://UI/GameTheme.tres" id="1_rhjrc"]
+[ext_resource type="Script" uid="uid://hogjyo3k0prd" path="res://scripts/resumo_ui.gd" id="2_rqhql"]
+
+[node name="ResumoUI" type="PanelContainer"]
+custom_minimum_size = Vector2(250, 150)
+theme = ExtResource("1_rhjrc")
+script = ExtResource("2_rqhql")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(230, 150)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://8odv4lgqv51p"]
+
+[ext_resource type="Script" uid="uid://c6fe4j27j3er8" path="res://scripts/evidencia_quadro.gd" id="1_bdyjh"]
+
+[node name="EvidenciaQuadro" type="PanelContainer"]
+script = ExtResource("1_bdyjh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5

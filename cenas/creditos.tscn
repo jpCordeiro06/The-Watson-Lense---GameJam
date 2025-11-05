@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ljht8y815bo"]
+
+[ext_resource type="Theme" uid="uid://bb47iui4wt5vr" path="res://UI/GameTheme.tres" id="1_f7osg"]
+[ext_resource type="Script" uid="uid://c4ek3p0si3t07" path="res://scripts/creditos.gd" id="2_rdysq"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_f7osg")
+script = ExtResource("2_rdysq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 479.0
+offset_bottom = 268.0
+color = Color(0.458824, 0.458824, 0.552941, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 478.0
+offset_bottom = 268.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Créditos"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]
+[b]DESENVOLVIDO POR[/b]
+
+K-Leo - Game Designer
+João Pedro Cordeiro - Game Designer
+
+Ricardo Filho - Game Dev
+Cadu - Game Dev
+
+Ikaro Gonçalves - Músico
+
+Julia Teotonio - Artista
+Artur Aires - Artista e Escritor
+
+
+[i]Criado para a Game Jam+ 2025[/i]
+[/center]"
+
+[node name="VoltarButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Voltar"
+
+[connection signal="pressed" from="VBoxContainer/VoltarButton" to="." method="_on_voltar_button_pressed"]

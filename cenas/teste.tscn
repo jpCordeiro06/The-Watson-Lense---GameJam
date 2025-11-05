@@ -1,0 +1,166 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr0f10wr2apxd"]
+
+[ext_resource type="PackedScene" uid="uid://diixlkqaopvfi" path="res://Jogador/watson.tscn" id="1_t87xa"]
+
+[sub_resource type="GDScript" id="GDScript_t87xa"]
+script/source = "extends Node2D
+
+enum GameState {
+	CENA_0_CHAMADO,      # A cutscene inicial
+	CENA_1_DESCOBERTA,   # Jogador explora a sala de estar
+	CENA_2_ANOMALIA,     # Jogador descobre o cadeado no quarto
+	CENA_3_CACA_A_PISTA, # Jogador pode explorar tudo para achar a combinação
+	CENA_FINAL           # O quebra-cabeça foi resolvido
+}
+
+# Esta variável vai guardar em que parte da história nós estamos.
+var estado_atual: GameState = GameState.CENA_1_DESCOBERTA
+
+var dialogos = {
+	\"cadeado_quarto\": {
+		\"analise_holmes\": \"Análise: Este é um cadeado de combinação analógico, uma anomalia neste apartamento. A tecnologia é arcaica, mas eficaz. Não consigo interfacear. Você terá que encontrar a combinação, Watson.\",
+		\"opcoes\": [
+			{\"texto\": \"Procurar por números escritos por perto.\", \"resposta_holmes\": \"Lógico. A memória humana é falha; anotações são comuns.\"},
+			{\"texto\": \"Examinar o diário da vítima.\", \"resposta_holmes\": \"Uma boa hipótese. Datas ou eventos significativos são frequentemente usados como senhas.\"},
+			{\"texto\": \"Ignorar o cadeado por enquanto.\", \"resposta_holmes\": \"Ineficiente, mas é sua prerrogativa. Prossiga.\"}
+		]
+	},
+	\"corpo_vitima\": {
+		\"analise_holmes\": \"Análise: Biometria completa. Causa da morte: parada cardiorrespiratória. Contudo, detecto um resíduo de partícula quântica em seu relógio. Não é a causa da morte, mas é... peculiar.\",
+		\"opcoes\": [
+			{\"texto\": \"O que é essa partícula?\", \"resposta_holmes\": \"Origem desconhecida. Anomalia de alta prioridade. Precisamos de mais dados.\"},
+			{\"texto\": \"Examinar o relógio mais de perto.\", \"resposta_holmes\": \"Ação recomendada. Procure por modificações ou marcas incomuns.\"},
+			{\"texto\": \"Focar na causa da morte.\", \"resposta_holmes\": \"A parada cardíaca pode ter sido induzida. Procure por toxinas ou dispositivos próximos.\"}
+		]
+	},
+	\"porta_retrato_digital\": {
+		\"analise_holmes\": \"Análise: Um porta-retratos digital. A imagem mostra a vítima em uma celebração. Metadados indicam a data do evento: **18** de Outubro. Relevância desconhecida, mas anomalias temporais são significativas.\",
+		\"opcoes\": [
+			{\"texto\": \"Anotado. Procurar mais números.\", \"resposta_holmes\": \"Eficiente. Continue a varredura.\"},
+			{\"texto\": \"Quem está com ele na foto?\", \"resposta_holmes\": \"Reconhecimento facial... negativo. O indivíduo não consta em nenhum banco de dados.\"}
+		]
+	},
+	\"nota_fiscal\": {
+		\"analise_holmes\": \"Análise: Uma transação para um componente eletrônico obsoleto, no valor de **$25**. O comprador é a vítima. A compra de tecnologia antiga é um padrão emergente neste caso.\",
+		\"opcoes\": [
+			{\"texto\": \"Anotado. Um valor... peculiar.\", \"resposta_holmes\": \"Concordo. A precisão do valor sugere importância.\"},
+			{\"texto\": \"O que era o componente?\", \"resposta_holmes\": \"Um capacitor de fluxo temporal de baixa potência. Inútil para qualquer tecnologia moderna. A não ser...\"}
+		]
+	},
+	\"diario_papel\": {
+		\"analise_holmes\": \"Análise: Diário de papel antigo. Uma anomalia, assim como o cadeado. A última entrada fala sobre 'esconder o tempo onde ele não pode ser visto'. Uma metáfora, provavelmente.\",
+		\"opcoes\": [
+			{\"texto\": \"Reler a entrada.\", \"resposta_holmes\": \"Repetir a análise não trará novos dados.\"},
+			{\"texto\": \"Procurar por páginas rasgadas.\", \"resposta_holmes\": \"Negativo. O diário está intacto.\"}
+		]
+	}
+}
+
+const CODIGO_CORRETO = \"1825\"
+
+@onready var dialogo_ui = $DialogoUI/MeuPainel
+@onready var jogador = $Watson # Referência ao jogador
+@onready var cadeado_ui = $CadeadoUI
+
+func _ready():
+	# Conectar o sinal das suas evidências 
+	dialogo_ui.dialogo_encerrado.connect(avancar_estado)
+	cadeado_ui.codigo_inserido.connect(_on_codigo_inserido)
+	
+	$EvidenciaCadeado.evidencia_escaneada.connect(iniciar_dialogo)
+	$EvidenciaCorpo.evidencia_escaneada.connect(iniciar_dialogo)
+	$PortaRetrato.evidencia_escaneada.connect(iniciar_dialogo)
+	$NotaFiscal.evidencia_escaneada.connect(iniciar_dialogo)
+	$Diario.evidencia_escaneada.connect(iniciar_dialogo)
+	
+
+func iniciar_dialogo(id_da_pista):
+	if dialogos.has(id_da_pista):
+		var dados_dialogo = dialogos[id_da_pista]
+		
+		# Trava o movimento do jogador
+		jogador.travar_movimento(true)
+		
+		# Manda os dados para a UI e a inicia
+		dialogo_ui.start_dialogue(dados_dialogo)
+
+func pode_interagir(id_da_pista: String) -> bool:
+	match estado_atual:
+		GameState.CENA_1_DESCOBERTA:
+			# No início, o jogador SÓ PODE escanear o corpo da vítima.
+			# É a introdução à mecânica e à IA HOLMES.
+			return id_da_pista == \"corpo_vitima\"
+			
+		GameState.CENA_2_ANOMALIA:
+			# Depois de falar com HOLMES sobre o corpo, o jogador é guiado ao quarto,
+			# onde encontra o cadeado.
+			return id_da_pista == \"cadeado_quarto\"
+			
+		GameState.CENA_3_CACA_A_PISTA:
+			# Agora que o mistério do cadeado foi estabelecido,
+			# o jogador pode escanear o resto das pistas para encontrar a combinação.
+			return id_da_pista in [\"porta_retrato\", \"nota_fiscal\", \"diario\"]
+			
+	# Se nenhum dos casos acima for verdadeiro, não permite a interação.
+	return false
+
+func avancar_estado():
+	print(\"Avançando do estado: \", GameState.keys()[estado_atual])
+	
+	match estado_atual:
+		GameState.CENA_1_DESCOBERTA:
+			estado_atual = GameState.CENA_2_ANOMALIA
+			# Dica de HOLMES para guiar o jogador para o próximo passo.
+			dialogo_ui.mostrar_dialogo(\"Interessante... Watson, detecto outra anomalia no quarto. Investigue.\")
+			
+		GameState.CENA_2_ANOMALIA:
+			estado_atual = GameState.CENA_3_CACA_A_PISTA
+			# HOLMES dá a instrução final para o quebra-cabeça principal.
+			dialogo_ui.mostrar_dialogo(\"HOLMES: Um cadeado analógico. Procure por pistas que indiquem uma combinação numérica no ambiente.\")
+			
+		GameState.CENA_3_CACA_A_PISTA:
+			# Nesta fase, o diálogo termina, mas a história não avança.
+			# O jogador precisa resolver o puzzle do cadeado para progredir.
+			# Portanto, 'pass' é a ação correta aqui.
+			pass
+
+		GameState.CENA_FINAL:
+			# O jogador inseriu o código correto! Esta é a cena final.
+			print(\"PROTÓTIPO CONCLUÍDO!\")
+			
+			# Mostra uma mensagem final de HOLMES.
+			dialogo_ui.mostrar_dialogo(\"HOLMES: Excelente trabalho dedutivo, Watson. O cadeado está aberto. Nossa investigação pode continuar...\")
+			
+			# Cria um timer para esperar a mensagem final ser lida antes de mudar de cena.
+			var fim_timer = get_tree().create_timer(4.0) # Espera 4 segundos
+			await fim_timer.timeout
+			
+			# Carrega a cena de finalização.
+			get_tree().change_scene_to_file(\"res://cenas/Fim.tscn\")
+			
+	print(\"Novo estado: \", GameState.keys()[estado_atual])
+
+func abrir_ui_cadeado():
+	# Só permite abrir a UI quando estamos na fase correta da história
+	if estado_atual == GameState.CENA_3_CACA_A_PISTA:
+		cadeado_ui.mostrar()
+		get_tree().paused = true # Pausa o jogo ao fundo
+
+# Função que reage à tentativa do jogador
+func _on_codigo_inserido(codigo_tentado: String):
+	if codigo_tentado == CODIGO_CORRETO:
+		print(\"CÓDIGO CORRETO! Protótipo concluído.\")
+		get_tree().paused = false
+		cadeado_ui.hide()
+		estado_atual = GameState.CENA_FINAL
+		avancar_estado() # Chama a função para finalizar o jogo
+	else:
+		print(\"Código incorreto.\")
+		cadeado_ui.get_node(\"VBoxContainer/CodigoLabel\").text = \"NEGADO\"
+"
+
+[node name="teste" type="Node2D"]
+script = SubResource("GDScript_t87xa")
+
+[node name="Watson" parent="." instance=ExtResource("1_t87xa")]
+position = Vector2(231, 155)

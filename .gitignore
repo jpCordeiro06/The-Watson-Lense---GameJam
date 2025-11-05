@@ -1,0 +1,22 @@
+# Godot-specific ignores
+.godot/
+
+# Mono-specific ignores
+.mono/
+
+# Asset-specific ignores
+.import/
+
+# Exported game files
+export.cfg
+export_presets.cfg
+
+# Build artifacts
+build/
+dist/
+bin/
+*.exe
+*.apk
+*.aab
+*.pck
+*.zip

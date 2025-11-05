@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bll8q8cwh1fse"]
+
+[ext_resource type="Script" uid="uid://d2e7joyq25pch" path="res://UI/hud.gd" id="1_yixhe"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_yixhe")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -80.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="BtnQuadroEvidencias" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 7
+text = "📋"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/BtnQuadroEvidencias" to="." method="_on_btn_quadro_evidencias_pressed"]

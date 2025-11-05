@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbhq144bmnlst"]
+
+[ext_resource type="Script" uid="uid://bdni18jutaa37" path="res://scripts/quadro.gd" id="1_m16tq"]
+
+[node name="QuadroEvidencias" type="CanvasLayer"]
+
+[node name="Quadro" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m16tq")

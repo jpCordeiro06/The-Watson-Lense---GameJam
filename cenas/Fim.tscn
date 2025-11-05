@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8p13ims2pbdp"]
+
+[ext_resource type="Theme" uid="uid://bb47iui4wt5vr" path="res://UI/GameTheme.tres" id="1_jekhx"]
+
+[node name="ColorRect" type="ColorRect"]
+offset_right = 479.0
+offset_bottom = 273.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 112.0
+offset_right = 341.0
+offset_bottom = 157.0
+theme = ExtResource("1_jekhx")
+text = "Fim do Protótipo.
+Obrigador por jogar!"
+horizontal_alignment = 1
+vertical_alignment = 1
