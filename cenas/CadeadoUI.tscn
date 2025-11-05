@@ -1,19 +1,9 @@
-<<<<<<< HEAD
-[gd_scene load_steps=4 format=3 uid="uid://gcj8mdhua8u1"]
+[gd_scene load_steps=6 format=3 uid="uid://ddvlkxtm0xe27"]
 
 [ext_resource type="Script" uid="uid://c6l24xnl6k4uj" path="res://scripts/cadeado_ui.gd" id="1_x05wk"]
-[ext_resource type="Theme" uid="uid://bb47iui4wt5vr" path="res://UI/GameTheme.tres" id="2_x05wk"]
-=======
-[gd_scene load_steps=3 format=3 uid="uid://gcj8mdhua8u1"]
+[ext_resource type="FontFile" uid="uid://digiplw3l5urc" path="res://assets/fonts/Silkscreen/slkscr.ttf" id="2_x05wk"]
 
-[ext_resource type="Script" uid="uid://c6l24xnl6k4uj" path="res://scripts/cadeado_ui.gd" id="1_x05wk"]
->>>>>>> 41fbbe098a89adc352de5fe5ab1f9750f6c959f4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2i7dv"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cf8vl"]
 bg_color = Color(0.168627, 0.14902, 0.12549, 1)
 border_width_left = 4
 border_width_top = 4
@@ -23,160 +13,200 @@ border_color = Color(0.545098, 0.45098, 0.333333, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.501961)
+shadow_size = 8
+shadow_offset = Vector2(2, 2)
 
-[node name="CadeadoUi" type="PanelContainer"]
-process_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -249.0
-offset_right = 250.0
-offset_bottom = 231.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_2i7dv")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw66b"]
+bg_color = Color(0.290196, 0.25098, 0.207843, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.545098, 0.45098, 0.333333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0msho"]
+bg_color = Color(0.168627, 0.14902, 0.12549, 1)
+
+[node name="CadeadoUI" type="PanelContainer"]
+custom_minimum_size = Vector2(250, 180)
+offset_left = 115.0
+offset_top = 45.0
+offset_right = 365.0
+offset_bottom = 225.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cf8vl")
 script = ExtResource("1_x05wk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-process_mode = 2
 layout_mode = 2
-mouse_filter = 0
-theme_override_constants/separation = 20
+theme_override_constants/separation = 8
 alignment = 1
 
-<<<<<<< HEAD
 [node name="TitleBar" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="FeedbackLabel" type="Label" parent="VBoxContainer/TitleBar"]
-custom_minimum_size = Vector2(450, 40)
 layout_mode = 2
-size_flags_horizontal = 3
-=======
-[node name="FeedbackLabel" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(450, 40)
-layout_mode = 2
->>>>>>> 41fbbe098a89adc352de5fe5ab1f9750f6c959f4
-theme_override_font_sizes/font_size = 16
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.831373, 0.686275, 0.215686, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_x05wk")
+theme_override_font_sizes/font_size = 9
 text = "Gire as rodas para encontrar a combinação"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-<<<<<<< HEAD
 [node name="CloseButton" type="Button" parent="VBoxContainer/TitleBar"]
 layout_mode = 2
-theme = ExtResource("2_x05wk")
+theme_override_fonts/font = ExtResource("2_x05wk")
 text = "X"
 
-=======
->>>>>>> 41fbbe098a89adc352de5fe5ab1f9750f6c959f4
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
+theme_override_constants/separation = 15
 
 [node name="Roda1" type="VSlider" parent="VBoxContainer/HBoxContainer"]
-process_mode = 2
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(40, 100)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_styles/slider = SubResource("StyleBoxFlat_jw66b")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_0msho")
 max_value = 9.0
 tick_count = 10
 ticks_on_borders = true
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Roda1"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -120.0
+offset_right = 25.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(0.831373, 0.686275, 0.215686, 1)
-theme_override_font_sizes/font_size = 48
-text = "0"
-horizontal_alignment = 1
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "0
+"
 vertical_alignment = 1
 
 [node name="Roda2" type="VSlider" parent="VBoxContainer/HBoxContainer"]
-process_mode = 2
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(40, 100)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_styles/slider = SubResource("StyleBoxFlat_jw66b")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_0msho")
 max_value = 9.0
 tick_count = 10
 ticks_on_borders = true
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Roda2"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -120.0
+offset_right = 25.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(0.831373, 0.686275, 0.215686, 1)
-theme_override_font_sizes/font_size = 48
-text = "0"
-horizontal_alignment = 1
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "0
+"
 vertical_alignment = 1
 
 [node name="Roda3" type="VSlider" parent="VBoxContainer/HBoxContainer"]
-process_mode = 2
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(40, 100)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_styles/slider = SubResource("StyleBoxFlat_jw66b")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_0msho")
 max_value = 9.0
 tick_count = 10
 ticks_on_borders = true
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Roda3"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -120.0
+offset_right = 25.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(0.831373, 0.686275, 0.215686, 1)
-theme_override_font_sizes/font_size = 48
-text = "0"
-horizontal_alignment = 1
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "0
+"
 vertical_alignment = 1
 
 [node name="Roda4" type="VSlider" parent="VBoxContainer/HBoxContainer"]
-process_mode = 2
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(40, 100)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_styles/slider = SubResource("StyleBoxFlat_jw66b")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_0msho")
 max_value = 9.0
 tick_count = 10
 ticks_on_borders = true
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Roda4"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -120.0
+offset_right = 25.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_color = Color(0.831373, 0.686275, 0.215686, 1)
-theme_override_font_sizes/font_size = 48
-text = "0"
-horizontal_alignment = 1
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "0
+"
 vertical_alignment = 1
 
 [node name="BotoesContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="ResetarButton" type="Button" parent="VBoxContainer/BotoesContainer"]
-process_mode = 2
-custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "RESETAR"
+theme_override_fonts/font = ExtResource("2_x05wk")
+theme_override_font_sizes/font_size = 10
+text = "Resetar"
 
 [node name="ConfirmarButton" type="Button" parent="VBoxContainer/BotoesContainer"]
-process_mode = 2
-custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "CONFIRMAR"
+theme_override_fonts/font = ExtResource("2_x05wk")
+theme_override_font_sizes/font_size = 10
+text = "Confirmar"
 
-<<<<<<< HEAD
 [connection signal="pressed" from="VBoxContainer/TitleBar/CloseButton" to="." method="_on_close_button_pressed"]
-=======
->>>>>>> 41fbbe098a89adc352de5fe5ab1f9750f6c959f4
 [connection signal="pressed" from="VBoxContainer/BotoesContainer/ResetarButton" to="." method="_on_resetar_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/BotoesContainer/ConfirmarButton" to="." method="_on_confirmar_button_pressed"]
