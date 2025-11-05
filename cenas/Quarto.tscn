@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c5n6s0xevaee" path="res://assets/Quarto/Quarto1/Quarto1.png" id="2_ygt8o"]
 [ext_resource type="PackedScene" uid="uid://8woea7etcoif" path="res://cenas/evidencia.tscn" id="3_q2kdq"]
 [ext_resource type="PackedScene" uid="uid://diixlkqaopvfi" path="res://Jogador/watson.tscn" id="4_ygt8o"]
-[ext_resource type="PackedScene" uid="uid://gcj8mdhua8u1" path="res://cenas/CadeadoUI.tscn" id="5_ws485"]
+[ext_resource type="PackedScene" uid="uid://ddvlkxtm0xe27" path="res://cenas/CadeadoUI.tscn" id="5_ws485"]
 [ext_resource type="Script" uid="uid://crl4lgcc2dclj" path="res://scripts/CadeadoInterativo.gd" id="6_oyhqy"]
 [ext_resource type="Texture2D" uid="uid://2h7mh5d5owvl" path="res://assets/Quarto/Quarto1/Cadeira.png" id="7_j8kd6"]
 [ext_resource type="Texture2D" uid="uid://defe56t5n762t" path="res://assets/Quarto/Quarto1/Nota.png" id="7_ws485"]
@@ -117,7 +117,6 @@ position = Vector2(-2, -6.25)
 position = Vector2(466, 211)
 rotation = 1.5708
 id_da_pista = "nota_fiscal"
-nome_evidencia = "Nota Fiscal"
 
 [node name="Sprite2D" parent="EvidenciaNotaFiscal" index="0"]
 position = Vector2(4.67322, -0.15692)
@@ -136,10 +135,6 @@ layer = 100
 
 [node name="CadeadoUI" parent="CanvasLayerCadeado" instance=ExtResource("5_ws485")]
 process_mode = 2
-offset_left = -468.0
-offset_top = -353.0
-offset_right = 22.0
-offset_bottom = 127.0
 
 [connection signal="body_entered" from="PortaParaApartamento" to="." method="_on_porta_para_apartamento_body_entered"]
 

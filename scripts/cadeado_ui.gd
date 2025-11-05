@@ -17,6 +17,7 @@ signal codigo_inserido(codigo)
 # Botões
 @onready var confirmar_btn: Button = $VBoxContainer/BotoesContainer/ConfirmarButton
 @onready var resetar_btn: Button = $VBoxContainer/BotoesContainer/ResetarButton
+@onready var fechar_btn: Button = $VBoxContainer/TitleBar/CloseButton
 
 # Label de feedback
 @onready var feedback_label: Label = $VBoxContainer/FeedbackLabel
@@ -48,6 +49,8 @@ func _ready() -> void:
 		confirmar_btn.pressed.connect(_on_confirmar_button_pressed)
 	if resetar_btn:
 		resetar_btn.pressed.connect(_on_resetar_button_pressed)
+	if fechar_btn:
+		fechar_btn.pressed.connect(_on_close_button_pressed)
 	
 	# Resetar para posição inicial
 	resetar_rodas()
@@ -90,9 +93,17 @@ func configurar_roda(roda: VSlider, label: Label):
 	print("✓ Roda configurada: ", roda.name)
 
 func _on_roda_changed(novo_valor: float, label: Label, roda: VSlider):
+	print("=== RODA MUDOU ===")
+	print("Roda: ", roda.name if roda else "null")
+	print("Novo valor: ", novo_valor)
+	print("Label: ", label if label else "null")
+	
 	# Atualizar o label com o novo número
 	if label:
 		label.text = str(int(novo_valor))
+		print("✓ Label atualizado para: ", label.text)
+	else:
+		print("✗ Label é null!")
 	
 	# Tocar som de clique (se existir)
 	if som_clique and som_clique.stream:
@@ -124,10 +135,13 @@ func _on_resetar_button_pressed():
 		feedback_label.text = "Combinação resetada"
 		feedback_label.modulate = Color.GRAY
 
+<<<<<<< HEAD
 func _on_close_button_pressed():
 	esconder()
 
 =======
+=======
+>>>>>>> 606d9466f94989b4894c62d6fc5c4ee5545a8079
 func resetar_rodas():
 	# Voltar todas as rodas para 0
 	if roda1:
@@ -183,3 +197,7 @@ func mostrar_feedback_sucesso():
 	if feedback_label:
 		feedback_label.text = "CADEADO DESBLOQUEADO!"
 		feedback_label.modulate = Color.GREEN
+
+
+func _on_close_button_pressed() -> void:
+	esconder()

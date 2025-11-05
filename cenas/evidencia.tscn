@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://8woea7etcoif"]
 
-[ext_resource type="Script" uid="uid://cr2t4xomcibbj" path="res://Jogador/evidencia.gd" id="1_hqimv"]
+[ext_resource type="Script" uid="uid://cr2t4xomcibbj" path="res://scripts/evidencia.gd" id="1_hqimv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1o6t"]
 size = Vector2(103.5, 98.5)
