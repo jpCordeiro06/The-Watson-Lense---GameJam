@@ -95,7 +95,12 @@ func _on_evidencia_escaneada(id_da_pista):
 	else:
 		# Para todas as outras evidências, apenas mostre o diálogo.
 		iniciar_dialogo(id_da_pista)
-
+	var nome_pista = id_da_pista.replace("_", " ").capitalize()
+	var sprite_pista = load("res://assets/icones_evidencias/" + id_da_pista + ".png")
+	
+	# Envia o dicionário completo
+	QuadroEvidencias.adicionar_evidencia(id_da_pista, nome_pista, sprite_pista, dialogos)
+	
 func _on_dialogo_encerrado():
 	if jogador:
 		jogador.travar_movimento(false)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://crvsam833ji4g"]
 
 [ext_resource type="Theme" uid="uid://bb47iui4wt5vr" path="res://UI/GameTheme.tres" id="1_3x72b"]
-[ext_resource type="Script" uid="uid://dvk3uqke4cbbb" path="res://scripts/instruções.gd" id="2_qsrgd"]
+[ext_resource type="Script" uid="uid://dvk3uqke4cbbb" path="res://instruções.gd" id="2_qsrgd"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
