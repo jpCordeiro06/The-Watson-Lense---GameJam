@@ -8,10 +8,16 @@
 
 [node name="MeuPainel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(250, 0)
-anchors_preset = 9
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_right = 69.0
-grow_vertical = 2
+offset_left = -125.0
+offset_top = -84.0
+offset_right = 125.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 3
 theme = ExtResource("2_48ffi")
 script = ExtResource("1_idj3q")

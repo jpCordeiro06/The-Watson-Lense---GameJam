@@ -84,22 +84,28 @@ func iniciar_dialogo(id_da_pista: String):
 func _on_evidencia_escaneada(id_da_pista):
 	ultima_evidencia_interagida = id_da_pista
 	
+	# PASSO 1: Os dados são pegos PRIMEIRO
+	var dialogo_data = dialogos.get(id_da_pista)
+	if dialogo_data == null:
+		print("ERRO: Pista '", id_da_pista, "' sem diálogo no Quarto.gd")
+		return
+
+	# PASSO 2: A lógica de diálogo/cadeado acontece
 	if id_da_pista == "gaveta_cadeado":
 		if not gaveta_ja_vista:
-			# 1. Primeira vez? Mostra o diálogo.
 			iniciar_dialogo(id_da_pista)
 		else:
-			# 2. Próximas vezes? Abre o cadeado direto.
 			print("Gaveta já vista. Abrindo cadeado diretamente.")
 			abrir_ui_cadeado()
 	else:
-		# Para todas as outras evidências, apenas mostre o diálogo.
 		iniciar_dialogo(id_da_pista)
+	
+	# PASSO 3: Os dados (que sabemos que são bons) são enviados
 	var nome_pista = id_da_pista.replace("_", " ").capitalize()
 	var sprite_pista = load("res://assets/icones_evidencias/" + id_da_pista + ".png")
 	
-	# Envia o dicionário completo
-	QuadroEvidencias.adicionar_evidencia(id_da_pista, nome_pista, sprite_pista, dialogos)
+	# A "dialogo_data" daqui tem que ser a mesma do Passo 1
+	QuadroEvidencias.adicionar_evidencia(id_da_pista, nome_pista, sprite_pista, dialogo_data)
 	
 func _on_dialogo_encerrado():
 	if jogador:
@@ -158,3 +164,5 @@ func _on_codigo_inserido(codigo_tentado: String):
 		# Limpar os campos do cadeado
 		if cadeado_ui.has_method("_on_clear_button_pressed"):
 			cadeado_ui._on_clear_button_pressed()
+func pode_interagir(id_da_pista: String) -> bool:
+	return true

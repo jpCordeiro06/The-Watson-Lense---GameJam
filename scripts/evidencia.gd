@@ -1,10 +1,8 @@
 extends Area2D
 
 signal evidencia_escaneada(id_da_pista)
-# Esta variável aparecerá no Inspector para cada pista que você colocar no nível.
-# Assim, você pode dizer qual informação cada uma delas envia para a IA HOLMES.
 @export var id_da_pista: String = "pista_generica"
-@onready var game_director = get_node("/root/Sala")
+@onready var game_director = get_tree().current_scene
 
 var player_in_range: CharacterBody2D = null
 
@@ -19,7 +17,7 @@ func scan():
 	print("Evidência '", id_da_pista, "' foi escaneada!")
 	emit_signal("evidencia_escaneada", id_da_pista)
 	
-	$CollisionShape2D.set_deferred("disabled", true)
+	#$CollisionShape2D.set_deferred("disabled", true)
 	modulate.a = 0.4
 
 
