@@ -158,3 +158,5 @@ func _on_codigo_inserido(codigo_tentado: String):
 		# Limpar os campos do cadeado
 		if cadeado_ui.has_method("_on_clear_button_pressed"):
 			cadeado_ui._on_clear_button_pressed()
+func pode_interagir(id_da_pista: String) -> bool:
+	return true

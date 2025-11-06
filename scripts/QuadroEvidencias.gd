@@ -125,18 +125,17 @@ func _on_btn_fechar_pressed():
 	print("=== Botão FECHAR pressionado ===")
 	fechar()
 
-# --- FUNÇÃO ATUALIZADA ---
 # Adicionar evidência coletada ao quadro
 func adicionar_evidencia(id: String, nome: String, sprite: Texture2D, dialogo_data: Dictionary):
-	if evidencias_coletadas.has(id):
-		print("Evidência '", id, "' já foi adicionada.")
-		return
+	#if evidencias_coletadas.has(id):
+		#print("Evidência '", id, "' já foi adicionada.")
+		#return
 	
 	# Salvar dados da evidência
 	evidencias_coletadas[id] = {
 		"nome": nome,
 		"sprite": sprite,
-		"dialogo_data": dialogo_data, # <-- MUDANÇA: Salva o dicionário todo
+		"dialogo_data": dialogo_data,
 		"posicao_quadro": Vector2.ZERO,
 		"conexoes": []
 	}
@@ -207,7 +206,6 @@ func _on_evidencia_largada_no_quadro(data, posicao_local):
 	nova_evidencia.inspecionado.connect(_on_evidencia_inspecionada)
 
 
-# --- FUNÇÃO ATUALIZADA ---
 func _on_evidencia_inspecionada(evidencia_id: String):
 	# 1. Pega os dados da evidência que salvamos
 	var dados_evidencia = evidencias_coletadas.get(evidencia_id)
