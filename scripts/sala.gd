@@ -92,11 +92,7 @@ func _on_evidencia_escaneada(id_da_pista):
 		if dialogo_data:
 			# 2. Pega as informações para o quadro
 			var nome_pista = id_da_pista.replace("_", " ").capitalize()
-			var analise = dialogo_data.get("analise_holmes")
-			
-			# 3. Carrega o ícone da evidência
+		# Não precisamos mais da variável 'analise' aqui
 			var sprite_pista = load("res://assets/icones_evidencias/" + id_da_pista + ".png")
 			
-			# 4. Chama o Autoload para adicionar a evidência ao quadro
-			print("Carregando sprite: ", sprite_pista) # <- ADICIONE ISSOdd
-			QuadroEvidencias.adicionar_evidencia(id_da_pista, nome_pista, sprite_pista, analise)
+			QuadroEvidencias.adicionar_evidencia(id_da_pista, nome_pista, sprite_pista, dialogo_data)

@@ -160,7 +160,6 @@ position = Vector2(795, 28)
 [node name="EvidenciaCorpo" parent="." instance=ExtResource("5_p22wk")]
 position = Vector2(347, 104)
 id_da_pista = "corpo_vitima"
-nome_evidencia = "Corpo"
 
 [node name="Sprite2D" parent="EvidenciaCorpo" index="0"]
 position = Vector2(68, 47)
@@ -189,7 +188,6 @@ texture = ExtResource("9_tkemp")
 [node name="EvidenciaPortaRetrato" parent="." instance=ExtResource("5_p22wk")]
 position = Vector2(953, 14)
 id_da_pista = "porta_retrato"
-nome_evidencia = "Porta Retrato"
 
 [node name="Sprite2D" parent="EvidenciaPortaRetrato" index="0"]
 position = Vector2(41.9999, 41.4999)
